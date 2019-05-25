@@ -27,7 +27,7 @@ const index = algolia.initIndex(process.env.ALGOLIA_INDEX_NAME);
 
 const tripId = context.params.tripId
 
-if(!change.after.exists) {
+if(!change.after.exists || change.after.val() === null) {
     return index.deleteObject(tripId, (err) => {
         if (err) throw err
         console.log('Trip removed in Algolia Index', tripId)    
