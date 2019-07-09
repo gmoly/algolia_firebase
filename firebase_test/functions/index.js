@@ -35,11 +35,17 @@ if(!change.after.exists || change.after.val() === null) {
 }
 
 const data = change.after.val()
-data['objectID'] = tripId
+const result = {
+  objectID: tripId,
+  title: data.title,
+  userId: data.userId,
+  places: data.places.map(place => {return { place: place.placeTitle, latitude: place.location.latitude, longitude: place.location.longitude }})
+}
 
-return index.saveObject(data, (err, content) => {
+
+return index.saveObject(result, (err, content) => {
     if (err) throw err
-    console.log('Trip updated in Algolia Index', data.objectID)
+    console.log('Trip updated in Algolia Index', result.objectID)
 })
 
 });
