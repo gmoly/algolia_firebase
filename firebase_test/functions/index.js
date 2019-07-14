@@ -38,7 +38,8 @@ const data = change.after.val()
 const result = {
   objectID: tripId,
   title: data.title,
-  userId: data.userId,
+  user: data.user,
+  published: data.published,
   places: data.places.map(place => {return { place: place.placeTitle, latitude: place.location.latitude, longitude: place.location.longitude }})
 }
 
